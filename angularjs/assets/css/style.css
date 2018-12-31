@@ -1,0 +1,26 @@
+/* customise the navbar form width */
+.searchform{ 
+	width: 70%;
+}
+/* customise the navbar form input width */
+.searchformgroup{ 
+	width: 100%;
+}
+
+/* customise the navbar form input width */
+.searchforminput{ 
+	width: 100%;
+}
+
+.customwidth{
+	width: 110% !important;
+}
+
+.sort-icon {
+    font-size: 9px;
+    margin-left: 5px;
+}
+
+th {
+    cursor:pointer;
+}
