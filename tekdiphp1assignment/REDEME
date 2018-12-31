@@ -1,0 +1,5 @@
+# Download the folder
+# Put it inside any local server
+# Create the dataase with name tekdiphp1assignment
+# import the tekdiphp1assignment.sql file into the database file location /tekdiphp1assignment/db/
+# Run the project in browser
