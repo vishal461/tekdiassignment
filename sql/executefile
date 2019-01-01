@@ -5,7 +5,7 @@ SELECT productmaster.pname, MAX((quantitymaster.maxqty - quantitymaster.minqty)/
 JOIN quantitymaster ON quantitymaster.qid = pricemaster.qid
 JOIN productmaster ON productmaster.pid = pricemaster.pid
 
-Minimun price
+Minimum price
 SELECT productmaster.pname, MIN((quantitymaster.maxqty - quantitymaster.minqty)/pricemaster.price) from pricemaster
 JOIN quantitymaster ON quantitymaster.qid = pricemaster.qid
 JOIN productmaster ON productmaster.pid = pricemaster.pid
