@@ -1,7 +1,11 @@
 /* finding of minimum and maximum */
 
-SELECT MIN(quantitymaster.minqty), quantitymaster.maxqty, MAX(pricemaster.price) FROM quantitymaster 
-JOIN pricemaster ON pricemaster.qid = quantitymaster.qid GROUP BY maxqty LIMIT 1;
+Maximum price
+SELECT productmaster.pname, MAX((quantitymaster.maxqty - quantitymaster.minqty)/pricemaster.price) from pricemaster
+JOIN quantitymaster ON quantitymaster.qid = pricemaster.qid
+JOIN productmaster ON productmaster.pid = pricemaster.pid
 
-SELECT MAX(quantitymaster.minqty), quantitymaster.maxqty, MIN(pricemaster.price) FROM quantitymaster 
-JOIN pricemaster ON pricemaster.qid = quantitymaster.qid GROUP BY maxqty LIMIT 1;
+Minimun price
+SELECT productmaster.pname, MIN((quantitymaster.maxqty - quantitymaster.minqty)/pricemaster.price) from pricemaster
+JOIN quantitymaster ON quantitymaster.qid = pricemaster.qid
+JOIN productmaster ON productmaster.pid = pricemaster.pid
