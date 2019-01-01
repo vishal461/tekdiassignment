@@ -1,11 +1,49 @@
-/* finding of minimum and maximum */
+-- Name of the most expensive product(s)-----------------------------------
+SELECT P.Name,Q.*,(Q.Price / ABS(Q.ToQnty - Q.FromQnty)) PerPrice 
+FROM 
+`quantity_price_dependent` Q 
+INNER JOIN
+`product_details` P
+ON
+P.ID = Q.ProductID 
+-- group bY ProductID having MIN(PerPrice) 
+ORDER BY PerPrice DESC;
 
-Maximum price
-SELECT productmaster.pname, MAX((quantitymaster.maxqty - quantitymaster.minqty)/pricemaster.price) from pricemaster
-JOIN quantitymaster ON quantitymaster.qid = pricemaster.qid
-JOIN productmaster ON productmaster.pid = pricemaster.pid
+-- Name of the cheapest product(s) ------------------------------------------
+SELECT P.Name,Q.*,(Q.Price / ABS(Q.ToQnty - Q.FromQnty)) PerPrice 
+FROM 
+`quantity_price_dependent` Q 
+INNER JOIN
+`product_details` P
+ON
+P.ID = Q.ProductID 
+-- group bY ProductID having MIN(PerPrice) 
+ORDER BY PerPrice ASC;
 
-Minimum price
-SELECT productmaster.pname, MIN((quantitymaster.maxqty - quantitymaster.minqty)/pricemaster.price) from pricemaster
-JOIN quantitymaster ON quantitymaster.qid = pricemaster.qid
-JOIN productmaster ON productmaster.pid = pricemaster.pid
+-- Per item price for 75 memory cards----------------------------------------
+SELECT (temp.Price/temp.AmtDiff) * 75 PerQnty FROM(
+SELECT 
+P.Name ProductName,
+ABS(ToQnty - FromQnty) AmtDiff,
+Q.Price
+FROM
+quantity_price_dependent Q
+INNER JOIN
+`product_details` P 
+ON 
+P.ID = Q.ProductID
+WHERE "75" BETWEEN FromQnty AND ToQnty AND P.Name = "Earphones") temp;
+
+-- Per item price for 6 hammers----------------------------------------------
+SELECT (temp.Price/temp.AmtDiff) * 6 PerQnty FROM(
+SELECT 
+P.Name ProductName,
+ABS(ToQnty - FromQnty) AmtDiff,
+Q.Price
+FROM
+quantity_price_dependent Q
+INNER JOIN
+`product_details` P
+ON 
+P.ID = Q.ProductID
+WHERE "6" BETWEEN FromQnty AND ToQnty AND P.Name = "Hammer") temp;
